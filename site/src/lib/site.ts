@@ -3,6 +3,14 @@
  * Меняете здесь — меняется на всём сайте.
  */
 
+/**
+ * Сайт публикуется в подпапке своего репозитория, поэтому пути к статике
+ * (фото, 3D-модели) собираются с префиксом NEXT_PUBLIC_BASE_PATH.
+ * Без префикса браузер ищет файлы в корне домена и получает 404.
+ */
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const asset = (path: string) => `${BASE}${path}`;
+
 export const site = {
   legalName: "ООО «Медбизнес»",
   brandName: "Пластический хирург",
@@ -22,7 +30,7 @@ export const surgeon = {
   experience: 16,
   operations: 2800,
   specialization: "лицо, грудь, контур тела",
-  photo: "/images/surgeon.jpg",
+  photo: asset("/images/surgeon.jpg"),
   bio: [
     "Работаю пластическим хирургом 16 лет. Из них девять — в одной операционной, где собирается вся команда: анестезиолог, ассистент, операционная сестра.",
     "Со второго года практики веду свою статистику: сколько операций, сколько осложнений, сколько случаев, где пришлось переделывать. Эту таблицу показываю на консультации, если пациент хочет её видеть.",
@@ -53,35 +61,35 @@ export const team = [
     id: "surgeon",
     name: surgeon.name,
     role: "Пластический хирург",
-    photo: "/images/surgeon.jpg",
+    photo: asset("/images/surgeon.jpg"),
     note: "16 лет практики, 2 800 операций",
   },
   {
     id: "anesthesiologist",
     name: "Марина Кузьмина",
     role: "Анестезиолог-реаниматолог",
-    photo: "/images/team-anesthesiologist.jpg",
+    photo: asset("/images/team-anesthesiologist.jpg"),
     note: "Ведёт общий наркоз и ведение послеоперационного дня",
   },
   {
     id: "assistant",
     name: "Тимур Басыров",
     role: "Ассистент хирурга",
-    photo: "/images/team-assistant.jpg",
+    photo: asset("/images/team-assistant.jpg"),
     note: "Работает в паре с хирургом с 2019 года",
   },
   {
     id: "nurse",
     name: "Ирина Лаврова",
     role: "Операционная сестра",
-    photo: "/images/team-nurse.jpg",
+    photo: asset("/images/team-nurse.jpg"),
     note: "Стерилизация, инструмент, контроль оборудования",
   },
   {
     id: "coordinator",
     name: "Ольга Мещерякова",
     role: "Координатор по пациентам",
-    photo: "/images/team-coordinator.jpg",
+    photo: asset("/images/team-coordinator.jpg"),
     note: "Согласование дат, документов и анализов",
   },
 ];
