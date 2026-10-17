@@ -20,7 +20,9 @@
 
 ### Мобильная версия
 
-![Мобильный первый экран](screenshots/mobile-hero.jpeg)
+| Первый экран | Бригада | Прайс |
+| :---: | :---: | :---: |
+| ![Первый экран на телефоне](screenshots/mobile-hero.png) | ![Бригада на телефоне](screenshots/mobile-team.png) | ![Прайс на телефоне](screenshots/mobile-prices.png) |
 
 ---
 
