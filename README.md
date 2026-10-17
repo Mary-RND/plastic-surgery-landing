@@ -1,6 +1,6 @@
 # Пластический хирург — информационный сайт «Медбизнес»
 
-**Live:** [mary-rnd.github.io/vebinar-ii-analitik-landing/plastic](https://mary-rnd.github.io/vebinar-ii-analitik-landing/plastic/)
+**Live:** [mary-rnd.github.io/plastic-surgery-landing](https://mary-rnd.github.io/plastic-surgery-landing/)
 
 Информационный сайт практики пластической хирургии: тёмный «музейный» первый экран
 с интерактивной 3D-скульптурой и одиннадцать секций — от обещаний хирурга до прайса
@@ -57,7 +57,7 @@
 ## Локальный запуск
 
 ```bash
-cd "Plastic Surgery land/site"
+cd site
 npm install --legacy-peer-deps
 npm run dev        # http://localhost:3000
 ```
@@ -69,34 +69,27 @@ npm run build:sculpture   # пересобрать 3D-скульптуру, ес
 
 ### Сборка с префиксом пути
 
-Сайт публикуется в подпапке, поэтому сборка идёт с `NEXT_PUBLIC_BASE_PATH`:
+Сайт публикуется в подпапке своего репозитория, поэтому локальная сборка повторяет это:
 
 ```bash
 # Linux / macOS / GitHub Actions
-NEXT_PUBLIC_BASE_PATH=/vebinar-ii-analitik-landing/plastic npm run build
+NEXT_PUBLIC_BASE_PATH=/plastic-surgery-landing npm run build
 
 # Windows PowerShell
-$env:NEXT_PUBLIC_BASE_PATH='/vebinar-ii-analitik-landing/plastic'; npm run build
+$env:NEXT_PUBLIC_BASE_PATH='/plastic-surgery-landing'; npm run build
 ```
 
 ## Деплой
 
-Пуш в `main` с изменениями в `Plastic Surgery land/site/**` запускает GitHub Actions
-(`.github/workflows/deploy-surgery-pages.yml`). Workflow собирает оба Next-сайта
-репозитория и раскладывает их так:
-
-| Путь на сайте | Что это |
-| --- | --- |
-| `/vebinar-ii-analitik-landing/` | Surgery landing (3D-редизайн сайта хирурга) |
-| `/vebinar-ii-analitik-landing/plastic/` | этот сайт |
-
-Второй Pages-workflow в одном репозитории добавлять нельзя — они начнут перезаписывать
-сайт друг друга, поэтому деплой общий.
+Пуш в ветку `main` с изменениями в `site/**` запускает GitHub Actions
+(`.github/workflows/deploy-pages.yml`): сборка с `NEXT_PUBLIC_BASE_PATH=/plastic-surgery-landing`,
+затем публикация `site/out` через `actions/deploy-pages`. Сайт живёт по адресу
+`https://mary-rnd.github.io/plastic-surgery-landing/`.
 
 ## Структура
 
 ```
-Plastic Surgery land/
+.
 ├── README.md                  ← этот файл
 ├── screenshots/               ← скриншоты для портфолио
 │   └── dev/                   ← рабочие материалы: итерации первого экрана, референсы
@@ -111,6 +104,7 @@ Plastic Surgery land/
     ├── src/lib/site.ts        # вся модель контента в одном файле
     ├── src/hooks/useWebGL.ts  # определение поддержки WebGL
     ├── public/images/         # фото хирурга и бригады
+    ├── public/models/         # 3D-скульптура (aphrodite.glb)
     ├── scripts/               # postbuild-фикс экспорта
     └── out/                   # собранный статический сайт (не в git)
 ```
